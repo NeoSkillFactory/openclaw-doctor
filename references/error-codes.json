@@ -1,0 +1,255 @@
+{
+  "ERR_CONFIG_01": {
+    "title": "Missing configuration file",
+    "description": "The OpenClaw configuration file (openclaw.config.json or .openclawrc) was not found.",
+    "fixSteps": [
+      "Check if openclaw.config.json exists in your project root",
+      "Run 'openclaw init' to generate a default configuration",
+      "Verify the OPENCLAW_CONFIG environment variable points to the correct path"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "critical",
+    "category": "configuration"
+  },
+  "ERR_CONFIG_02": {
+    "title": "Invalid configuration syntax",
+    "description": "The configuration file contains invalid JSON or unsupported fields.",
+    "fixSteps": [
+      "Validate your configuration file with 'openclaw config validate'",
+      "Check for trailing commas or missing quotes in JSON",
+      "Compare against the default config template in the docs"
+    ],
+    "confidenceThreshold": 0.85,
+    "severity": "critical",
+    "category": "configuration"
+  },
+  "ERR_CONFIG_03": {
+    "title": "Missing required configuration field",
+    "description": "A required field is missing from the configuration.",
+    "fixSteps": [
+      "Check that 'name' and 'version' fields are present in your config",
+      "Ensure all required skill references include a valid path",
+      "Run 'openclaw config validate' to see which fields are missing"
+    ],
+    "confidenceThreshold": 0.85,
+    "severity": "high",
+    "category": "configuration"
+  },
+  "ERR_SKILL_01": {
+    "title": "Skill not found",
+    "description": "The referenced skill could not be located in the skills directory or registry.",
+    "fixSteps": [
+      "Verify the skill name is spelled correctly in your configuration",
+      "Check that the skill is installed: 'openclaw skill list'",
+      "Install the skill: 'openclaw skill install <skill-name>'"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "high",
+    "category": "skill"
+  },
+  "ERR_SKILL_02": {
+    "title": "Skill SKILL.md missing or invalid",
+    "description": "The skill's SKILL.md file is missing required frontmatter or has invalid format.",
+    "fixSteps": [
+      "Ensure SKILL.md exists in the skill root directory",
+      "Add required YAML frontmatter with 'name' and 'description' fields",
+      "Validate frontmatter syntax using 'openclaw skill validate <path>'"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "high",
+    "category": "skill"
+  },
+  "ERR_SKILL_03": {
+    "title": "Skill script execution failed",
+    "description": "A script referenced in the skill failed to execute.",
+    "fixSteps": [
+      "Check that the script file exists and has execute permissions",
+      "Verify Node.js version compatibility (requires >= 18)",
+      "Run the script manually to see the full error output",
+      "Check for missing dependencies with 'npm install'"
+    ],
+    "confidenceThreshold": 0.8,
+    "severity": "high",
+    "category": "skill"
+  },
+  "ERR_AGENT_01": {
+    "title": "Agent session spawn failed",
+    "description": "Failed to spawn a new agent session.",
+    "fixSteps": [
+      "Check that the OpenClaw daemon is running: 'openclaw status'",
+      "Verify available system resources (memory and CPU)",
+      "Restart the agent service: 'openclaw agent restart'",
+      "Check session limits in configuration"
+    ],
+    "confidenceThreshold": 0.85,
+    "severity": "critical",
+    "category": "agent"
+  },
+  "ERR_AGENT_02": {
+    "title": "Agent communication timeout",
+    "description": "The agent session timed out waiting for a response.",
+    "fixSteps": [
+      "Increase the timeout value in your configuration",
+      "Check network connectivity between agent components",
+      "Verify the target service is running and responsive",
+      "Review agent logs for detailed timeout information"
+    ],
+    "confidenceThreshold": 0.8,
+    "severity": "high",
+    "category": "agent"
+  },
+  "ERR_AGENT_03": {
+    "title": "Agent crashed unexpectedly",
+    "description": "The agent process terminated with an unhandled error.",
+    "fixSteps": [
+      "Check agent logs at ~/.openclaw/logs/agent.log",
+      "Look for out-of-memory conditions in system logs",
+      "Update OpenClaw to the latest version",
+      "Run 'openclaw agent diagnose' for detailed crash analysis"
+    ],
+    "confidenceThreshold": 0.75,
+    "severity": "critical",
+    "category": "agent"
+  },
+  "ERR_SIGNAL_01": {
+    "title": "Process killed by signal",
+    "description": "The process received a kill signal (SIGTERM/SIGKILL).",
+    "fixSteps": [
+      "Check if the system OOM killer terminated the process",
+      "Increase memory limits in your configuration",
+      "Monitor resource usage during execution",
+      "Check for conflicting processes on the same port"
+    ],
+    "confidenceThreshold": 0.7,
+    "severity": "high",
+    "category": "runtime"
+  },
+  "ERR_MEMORY_07": {
+    "title": "Out of memory",
+    "description": "The process exhausted available memory.",
+    "fixSteps": [
+      "Increase Node.js heap size: --max-old-space-size=4096",
+      "Check for memory leaks in long-running agent sessions",
+      "Reduce concurrent session count in configuration",
+      "Monitor memory usage with 'openclaw metrics'"
+    ],
+    "confidenceThreshold": 0.85,
+    "severity": "critical",
+    "category": "runtime"
+  },
+  "ERR_INSTALL_01": {
+    "title": "Installation failed - missing Node.js",
+    "description": "Node.js is not installed or version is incompatible.",
+    "fixSteps": [
+      "Install Node.js >= 18 from https://nodejs.org",
+      "Use nvm to manage Node.js versions: 'nvm install 18'",
+      "Verify installation: 'node --version'"
+    ],
+    "confidenceThreshold": 0.95,
+    "severity": "critical",
+    "category": "installation"
+  },
+  "ERR_INSTALL_02": {
+    "title": "npm dependency resolution failed",
+    "description": "npm could not resolve one or more dependencies.",
+    "fixSteps": [
+      "Clear npm cache: 'npm cache clean --force'",
+      "Delete node_modules and package-lock.json, then 'npm install'",
+      "Check for conflicting peer dependency versions",
+      "Try using '--legacy-peer-deps' flag"
+    ],
+    "confidenceThreshold": 0.85,
+    "severity": "high",
+    "category": "installation"
+  },
+  "ERR_PERMISSION_01": {
+    "title": "Permission denied",
+    "description": "Insufficient permissions to access a file or directory.",
+    "fixSteps": [
+      "Check file ownership: 'ls -la <path>'",
+      "Fix permissions: 'chmod 755 <directory>' or 'chmod 644 <file>'",
+      "Avoid running with sudo - fix the underlying permission issue instead",
+      "Check if SELinux or AppArmor is blocking access"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "high",
+    "category": "runtime"
+  },
+  "ERR_NETWORK_01": {
+    "title": "Network connection failed",
+    "description": "Could not establish a network connection to the required service.",
+    "fixSteps": [
+      "Check internet connectivity",
+      "Verify proxy settings in environment variables",
+      "Check if a firewall is blocking outbound connections",
+      "Test the endpoint directly: 'curl -v <url>'"
+    ],
+    "confidenceThreshold": 0.8,
+    "severity": "high",
+    "category": "network"
+  },
+  "ERR_NETWORK_02": {
+    "title": "API rate limit exceeded",
+    "description": "Too many requests to the API in a short time period.",
+    "fixSteps": [
+      "Wait for the rate limit window to reset",
+      "Implement request throttling in your agent configuration",
+      "Check for runaway loops making excessive API calls",
+      "Contact support if the rate limit seems too restrictive"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "medium",
+    "category": "network"
+  },
+  "ERR_SESSION_01": {
+    "title": "Session state corrupted",
+    "description": "The agent session state file is corrupted or inconsistent.",
+    "fixSteps": [
+      "Clear the session cache: 'openclaw session clear'",
+      "Delete the session state directory: ~/.openclaw/sessions/",
+      "Restart the agent with a fresh session",
+      "Check disk space - corruption often occurs when disk is full"
+    ],
+    "confidenceThreshold": 0.8,
+    "severity": "high",
+    "category": "runtime"
+  },
+  "ERR_SESSION_02": {
+    "title": "Maximum sessions exceeded",
+    "description": "The maximum number of concurrent sessions has been reached.",
+    "fixSteps": [
+      "Close unused sessions: 'openclaw session list' then 'openclaw session close <id>'",
+      "Increase max_sessions in your configuration",
+      "Check for orphaned sessions that should have been cleaned up"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "medium",
+    "category": "runtime"
+  },
+  "ERR_TOOL_01": {
+    "title": "Tool execution failed",
+    "description": "A tool call within the agent workflow failed to execute.",
+    "fixSteps": [
+      "Verify the tool is properly registered in the agent configuration",
+      "Check tool dependencies are installed",
+      "Review tool input parameters for type mismatches",
+      "Run the tool in isolation to reproduce the error"
+    ],
+    "confidenceThreshold": 0.8,
+    "severity": "high",
+    "category": "runtime"
+  },
+  "ERR_TOOL_02": {
+    "title": "Tool not found",
+    "description": "The referenced tool is not registered or available.",
+    "fixSteps": [
+      "Check tool name spelling in your skill configuration",
+      "Verify the tool plugin is installed: 'openclaw tool list'",
+      "Install the missing tool: 'openclaw tool install <name>'",
+      "Check that tool permissions are configured correctly"
+    ],
+    "confidenceThreshold": 0.9,
+    "severity": "high",
+    "category": "runtime"
+  }
+}

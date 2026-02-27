@@ -1,0 +1,24 @@
+{
+  "name": "openclaw-doctor",
+  "version": "1.0.0",
+  "description": "Automatically diagnoses common OpenClaw errors and provides actionable fixes",
+  "main": "scripts/doctor.js",
+  "bin": {
+    "openclaw-doctor": "scripts/doctor.js"
+  },
+  "scripts": {
+    "start": "node scripts/doctor.js --health-check",
+    "test": "node scripts/test.js",
+    "doctor": "node scripts/doctor.js"
+  },
+  "keywords": [
+    "openclaw",
+    "diagnostics",
+    "error-handling",
+    "troubleshooting"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

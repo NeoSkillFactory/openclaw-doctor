@@ -1,0 +1,104 @@
+{
+  "patterns": [
+    {
+      "keywords": ["config", "configuration", "not found", "missing config"],
+      "errorIDs": ["ERR_CONFIG_01"],
+      "recommendedTests": ["check-config-exists", "check-config-path"]
+    },
+    {
+      "keywords": ["invalid json", "parse error", "syntax error", "unexpected token"],
+      "errorIDs": ["ERR_CONFIG_02"],
+      "recommendedTests": ["validate-json", "lint-config"]
+    },
+    {
+      "keywords": ["missing field", "required field", "undefined property"],
+      "errorIDs": ["ERR_CONFIG_03"],
+      "recommendedTests": ["validate-schema", "check-required-fields"]
+    },
+    {
+      "keywords": ["skill not found", "cannot find skill", "unknown skill"],
+      "errorIDs": ["ERR_SKILL_01"],
+      "recommendedTests": ["list-skills", "check-skill-path"]
+    },
+    {
+      "keywords": ["SKILL.md", "frontmatter", "invalid skill metadata"],
+      "errorIDs": ["ERR_SKILL_02"],
+      "recommendedTests": ["validate-skill-md", "check-frontmatter"]
+    },
+    {
+      "keywords": ["script failed", "script error", "execution failed", "exit code"],
+      "errorIDs": ["ERR_SKILL_03"],
+      "recommendedTests": ["run-script-check", "check-permissions"]
+    },
+    {
+      "keywords": ["spawn failed", "cannot spawn", "session spawn"],
+      "errorIDs": ["ERR_AGENT_01"],
+      "recommendedTests": ["check-daemon", "check-resources"]
+    },
+    {
+      "keywords": ["timeout", "timed out", "deadline exceeded"],
+      "errorIDs": ["ERR_AGENT_02"],
+      "recommendedTests": ["ping-service", "check-timeout-config"]
+    },
+    {
+      "keywords": ["agent crash", "agent died", "unexpected termination", "fatal error"],
+      "errorIDs": ["ERR_AGENT_03", "ERR_SIGNAL_01", "ERR_MEMORY_07"],
+      "recommendedTests": ["check-logs", "check-memory", "check-signals"]
+    },
+    {
+      "keywords": ["killed", "SIGTERM", "SIGKILL", "signal"],
+      "errorIDs": ["ERR_SIGNAL_01"],
+      "recommendedTests": ["check-oom-killer", "check-resources"]
+    },
+    {
+      "keywords": ["out of memory", "heap", "memory limit", "ENOMEM"],
+      "errorIDs": ["ERR_MEMORY_07"],
+      "recommendedTests": ["check-memory-usage", "check-heap-size"]
+    },
+    {
+      "keywords": ["node not found", "node version", "nvm"],
+      "errorIDs": ["ERR_INSTALL_01"],
+      "recommendedTests": ["check-node-version", "check-path"]
+    },
+    {
+      "keywords": ["npm install", "dependency", "peer dep", "ERESOLVE"],
+      "errorIDs": ["ERR_INSTALL_02"],
+      "recommendedTests": ["check-npm-cache", "check-package-json"]
+    },
+    {
+      "keywords": ["permission denied", "EACCES", "EPERM", "forbidden"],
+      "errorIDs": ["ERR_PERMISSION_01"],
+      "recommendedTests": ["check-permissions", "check-ownership"]
+    },
+    {
+      "keywords": ["ECONNREFUSED", "network error", "connection failed", "ENOTFOUND"],
+      "errorIDs": ["ERR_NETWORK_01"],
+      "recommendedTests": ["check-connectivity", "check-dns"]
+    },
+    {
+      "keywords": ["rate limit", "429", "too many requests", "throttle"],
+      "errorIDs": ["ERR_NETWORK_02"],
+      "recommendedTests": ["check-rate-limits", "check-request-frequency"]
+    },
+    {
+      "keywords": ["session corrupt", "state corrupt", "invalid state"],
+      "errorIDs": ["ERR_SESSION_01"],
+      "recommendedTests": ["check-session-state", "check-disk-space"]
+    },
+    {
+      "keywords": ["max sessions", "too many sessions", "session limit"],
+      "errorIDs": ["ERR_SESSION_02"],
+      "recommendedTests": ["list-sessions", "check-session-config"]
+    },
+    {
+      "keywords": ["tool failed", "tool error", "tool execution"],
+      "errorIDs": ["ERR_TOOL_01"],
+      "recommendedTests": ["check-tool-config", "run-tool-test"]
+    },
+    {
+      "keywords": ["tool not found", "unknown tool", "unregistered tool"],
+      "errorIDs": ["ERR_TOOL_02"],
+      "recommendedTests": ["list-tools", "check-tool-install"]
+    }
+  ]
+}
