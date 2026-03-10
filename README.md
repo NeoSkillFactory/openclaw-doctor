@@ -17,8 +17,6 @@
 
 Source code: [github.com/NeoSkillFactory/openclaw-doctor](https://github.com/NeoSkillFactory/openclaw-doctor)
 
-**Price suggestion:** $29 USD
-
 ## License
 
 MIT © NeoSkillFactory
